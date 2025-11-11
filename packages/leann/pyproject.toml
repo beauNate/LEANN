@@ -16,12 +16,17 @@ keywords = ["vector-database", "rag", "embeddings", "search", "ai"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Database",
+    "Topic :: Text Processing :: Indexing",
 ]
 
 # Default installation: core + hnsw + diskann
@@ -36,4 +41,8 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/yichuan-w/LEANN"
+Documentation = "https://github.com/yichuan-w/LEANN#readme"
 Issues = "https://github.com/yichuan-w/LEANN/issues"
+Changelog = "https://github.com/yichuan-w/LEANN/blob/main/CHANGELOG.md"
+"Source Code" = "https://github.com/yichuan-w/LEANN"
+Homepage = "https://github.com/yichuan-w/LEANN"
