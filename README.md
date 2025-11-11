@@ -1182,9 +1182,13 @@ If you find Leann useful, please cite:
 
 ## 🤝 [CONTRIBUTING →](docs/CONTRIBUTING.md)
 
+## 🔒 [Security Policy →](SECURITY.md)
+
+## 📜 [Code of Conduct →](CODE_OF_CONDUCT.md)
+
+## 📋 [Changelog →](CHANGELOG.md)
 
 ## ❓ [FAQ →](docs/faq.md)
-
 
 ## 📈 [Roadmap →](docs/roadmap.md)
 

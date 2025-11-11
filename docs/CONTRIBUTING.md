@@ -1,6 +1,8 @@
-# 🤝 Contributing
+## 🤝 Contributing
 
 We welcome contributions! Leann is built by the community, for the community.
+
+**Please read our [Code of Conduct](../CODE_OF_CONDUCT.md) before contributing.**
 
 ## Ways to Contribute
 
@@ -21,8 +23,8 @@ We welcome contributions! Leann is built by the community, for the community.
 
 2. **Clone the repository**:
    ```bash
-   git clone https://github.com/LEANN-RAG/LEANN-RAG.git
-   cd LEANN-RAG
+   git clone https://github.com/yichuan-w/LEANN.git
+   cd LEANN
    ```
 
 3. **Install system dependencies**:
@@ -210,9 +212,10 @@ When adding new features or making significant changes:
 
 ## 🤔 Getting Help
 
-- **Discord**: Join our community for discussions
+- **Slack**: Join our [LEANN Community](https://join.slack.com/t/leann-e2u9779/shared_invite/zt-3ckd2f6w1-OX08~NN4gkWhh10PRVBj1Q)
 - **Issues**: Check existing issues or create a new one
 - **Discussions**: For general questions and ideas
+- **Security Issues**: Report vulnerabilities through our [Security Policy](../SECURITY.md)
 
 ## 📄 License
 
