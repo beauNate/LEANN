@@ -11,6 +11,10 @@ import pytest
 
 def test_imports():
     """Test that all packages can be imported."""
+    import tiktoken  # noqa: F401
+
+    # Verify tiktoken can be imported (required for token counting)
+    assert tiktoken is not None
 
     # Test C++ extensions
 

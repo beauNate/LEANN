@@ -381,7 +381,16 @@ jobs:
           MKL_NUM_THREADS: 1
         run: |
           source .venv/bin/activate || source .venv/Scripts/activate
-          pytest tests/ -v --tb=short
+          pytest tests/ -v --tb=short --cov=leann --cov-report=term --cov-report=xml
+
+      - name: Upload coverage reports
+        if: matrix.os == 'ubuntu-22.04' && matrix.python == '3.11'
+        uses: codecov/codecov-action@v5
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
 
       - name: Run sanity checks (optional)
         run: |
