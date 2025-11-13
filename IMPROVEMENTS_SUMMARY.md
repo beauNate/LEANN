@@ -6,7 +6,33 @@ This document summarizes the improvements made to the LEANN repository based on 
 
 ## Issues Identified and Fixed
 
-### 1. Missing Dependency ✅ FIXED
+### 1. Python 3.9 Compatibility ✅ FIXED (CRITICAL)
+**Issue**: 10 files used `dict[str, Any]` and `list[str]` type hint syntax (PEP 604) which requires Python 3.10+, but the project claims to support Python 3.9 (`requires-python = ">=3.9"`).
+
+**Files Affected**:
+- `packages/leann-core/src/leann/api.py`
+- `packages/leann-core/src/leann/chat.py`
+- `packages/leann-core/src/leann/chunking_utils.py`
+- `packages/leann-core/src/leann/cli.py`
+- `packages/leann-core/src/leann/embedding_compute.py`
+- `packages/leann-core/src/leann/embedding_server_manager.py`
+- `packages/leann-core/src/leann/interface.py`
+- `packages/leann-core/src/leann/metadata_filter.py`
+- `packages/leann-core/src/leann/registry.py`
+- `packages/leann-core/src/leann/searcher_base.py`
+
+**Fix**: Added `from __future__ import annotations` to all affected files to enable postponed evaluation of annotations (PEP 563)
+
+**Impact**: 
+- **CRITICAL**: Without this fix, code fails to import on Python 3.9 with `TypeError: 'type' object is not subscriptable`
+- Affects all users running Python 3.9 (which is still widely used and supported by the project)
+- CI tests on Python 3.9 would fail on import
+
+**Test**: Created comprehensive compatibility test in `tests/test_py39_compatibility.py`:
+- AST-based scanner to verify all files with PEP 604 syntax have future imports
+- Import smoke test to verify modules load correctly on Python 3.9
+
+### 2. Missing Dependency ✅ FIXED
 **Issue**: The `tiktoken` library was imported in 3 files but not declared as a dependency in `leann-core/pyproject.toml`.
 
 **Files Affected**:
@@ -87,13 +113,21 @@ This document summarizes the improvements made to the LEANN repository based on 
 ### Files Modified
 1. `.editorconfig` - Created
 2. `packages/leann-core/pyproject.toml` - Added tiktoken, bumped version to 0.3.5
-3. `packages/leann-core/src/leann/embedding_compute.py` - Removed debug print, improved comments
-4. `packages/leann-core/src/leann/searcher_base.py` - Improved comments
-5. `packages/leann-core/src/leann/api.py` - Added input validation
-6. `.github/workflows/build-reusable.yml` - Added coverage reporting
-7. `pyproject.toml` - Added coverage configuration
-8. `tests/test_basic.py` - Added tiktoken import test
-9. `tests/test_input_validation.py` - Created comprehensive validation tests
+3. `packages/leann-core/src/leann/embedding_compute.py` - Removed debug print, improved comments, added future annotations
+4. `packages/leann-core/src/leann/searcher_base.py` - Improved comments, added future annotations
+5. `packages/leann-core/src/leann/api.py` - Added input validation, added future annotations
+6. `packages/leann-core/src/leann/chat.py` - Added future annotations
+7. `packages/leann-core/src/leann/chunking_utils.py` - Added future annotations
+8. `packages/leann-core/src/leann/cli.py` - Added future annotations
+9. `packages/leann-core/src/leann/embedding_server_manager.py` - Added future annotations
+10. `packages/leann-core/src/leann/interface.py` - Added future annotations
+11. `packages/leann-core/src/leann/metadata_filter.py` - Added future annotations
+12. `packages/leann-core/src/leann/registry.py` - Added future annotations
+13. `.github/workflows/build-reusable.yml` - Added coverage reporting
+14. `pyproject.toml` - Added coverage configuration
+15. `tests/test_basic.py` - Added tiktoken import test
+16. `tests/test_input_validation.py` - Created comprehensive validation tests
+17. `tests/test_py39_compatibility.py` - Created Python 3.9 compatibility tests
 
 ### Version Updates
 - `leann-core`: 0.3.4 → 0.3.5
@@ -116,6 +150,9 @@ This document summarizes the improvements made to the LEANN repository based on 
    - `test_add_text_validates_type()`
    - `test_search_validates_query()`
    - `test_search_validates_top_k()`
+3. `test_py39_compatibility.py` - Python 3.9 compatibility test suite:
+   - `test_python39_type_hint_compatibility()` - AST-based scanner for PEP 604 syntax
+   - `test_import_leann_on_python39()` - Import smoke test
 
 ### CI/CD Improvements
 - Coverage reports generated for all test runs
