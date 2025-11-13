@@ -105,9 +105,8 @@ class BaseSearcher(LeannBackendSearcherInterface, ABC):
         # Try to use embedding server if available and requested
         if use_server_if_available:
             try:
-                # TODO: Maybe we can directly use this port here?
-                # For this internal method, it's ok to assume that the server is running
-                # on that port?
+                # Note: Could optimize by checking if server is already running on zmq_port
+                # before calling _ensure_server_running, but current approach is safer
 
                 # Ensure we have a server with passages_file for compatibility
                 passages_source_file = self.index_dir / f"{self.index_path.name}.meta.json"

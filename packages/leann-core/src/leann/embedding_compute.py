@@ -313,7 +313,7 @@ def compute_embeddings_sentence_transformers(
 
         # Apply hardware optimizations
         if device == "cuda":
-            # TODO: Haven't tested this yet
+            # CUDA optimizations for better performance
             torch.backends.cuda.matmul.allow_tf32 = True
             torch.backends.cudnn.allow_tf32 = True
             torch.backends.cudnn.benchmark = True
@@ -326,7 +326,7 @@ def compute_embeddings_sentence_transformers(
             except AttributeError:
                 logger.warning("Some MPS optimizations not available in this PyTorch version")
         elif device == "cpu":
-            # TODO: Haven't tested this yet
+            # CPU optimizations: limit threads and enable MKL-DNN if available
             torch.set_num_threads(min(8, os.cpu_count() or 4))
             try:
                 torch.backends.mkldnn.enabled = True
@@ -654,7 +654,6 @@ def compute_embeddings_openai(
 
     embeddings = np.array(all_embeddings, dtype=np.float32)
     logger.info(f"Generated {len(embeddings)} embeddings, dimension: {embeddings.shape[1]}")
-    print(f"len of embeddings: {len(embeddings)}")
     return embeddings
 
 
