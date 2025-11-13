@@ -3,6 +3,8 @@ Enhanced chunking utilities with AST-aware code chunking support.
 Packaged within leann-core so installed wheels can import it reliably.
 """
 
+from __future__ import annotations
+
 import logging
 from pathlib import Path
 from typing import Any, Optional

@@ -3,6 +3,8 @@ This file contains the core API for the LEANN project, now definitively updated
 with the correct, original embedding logic from the user's reference code.
 """
 
+from __future__ import annotations
+
 import json
 import logging
 import os

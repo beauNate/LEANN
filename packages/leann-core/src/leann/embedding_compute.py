@@ -4,6 +4,8 @@ Consolidates all embedding computation logic using SentenceTransformer
 Preserves all optimization parameters to ensure performance
 """
 
+from __future__ import annotations
+
 import logging
 import os
 import time

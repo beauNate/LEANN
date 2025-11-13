@@ -4,6 +4,8 @@ This file contains the chat generation logic for the LEANN project,
 supporting different backends like Ollama, Hugging Face Transformers, and a simulation mode.
 """
 
+from __future__ import annotations
+
 import difflib
 import logging
 import os
