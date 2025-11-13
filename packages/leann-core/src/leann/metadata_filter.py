@@ -6,6 +6,8 @@ to search results from any LEANN backend. The filtering supports various
 operators for different data types including numbers, strings, booleans, and lists.
 """
 
+from __future__ import annotations
+
 import logging
 from typing import Any, Union
 

@@ -1,5 +1,7 @@
 # packages/leann-core/src/leann/registry.py
 
+from __future__ import annotations
+
 import importlib
 import importlib.metadata
 import json

@@ -3,6 +3,8 @@ This file contains the core API for the LEANN project, now definitively updated
 with the correct, original embedding logic from the user's reference code.
 """
 
+from __future__ import annotations
+
 import json
 import logging
 import os
@@ -381,6 +383,8 @@ class LeannBuilder:
         self.chunks: list[dict[str, Any]] = []
 
     def add_text(self, text: str, metadata: Optional[dict[str, Any]] = None):
+        if not isinstance(text, str):
+            raise TypeError(f"text must be a string, got {type(text).__name__}")
         if metadata is None:
             metadata = {}
         passage_id = metadata.get("id", str(len(self.chunks)))
@@ -942,6 +946,14 @@ class LeannSearcher:
         Returns:
             List of SearchResult objects with text, metadata, and similarity scores
         """
+        # Input validation
+        if not isinstance(query, str):
+            raise TypeError(f"query must be a string, got {type(query).__name__}")
+        if not query.strip():
+            raise ValueError("query cannot be empty or whitespace only")
+        if top_k < 1:
+            raise ValueError(f"top_k must be at least 1, got {top_k}")
+
         # Handle grep search
         if use_grep:
             return self._grep_search(query, top_k)

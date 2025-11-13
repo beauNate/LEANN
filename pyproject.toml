@@ -176,3 +176,24 @@ env = [
     "HF_HUB_DISABLE_SYMLINKS=1",
     "TOKENIZERS_PARALLELISM=false",
 ]
+
+[tool.coverage.run]
+source = ["packages/leann-core/src", "packages/leann-backend-hnsw", "packages/leann-backend-diskann"]
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/.venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
